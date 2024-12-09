@@ -8,7 +8,7 @@ import os
 
 LLM_API_KEY = os.environ.get("LLM_API_KEY", "")
 LLM_API_BASE = os.environ.get("LLM_API_BASE", "https://api.groq.com/openai/v1/chat/completions")  # default fallback
-DEFAULT_MODEL = "llama-3.3-70b-versatile"
+DEFAULT_MODEL = "mixtral-8x7b-32768"
 DEFAULT_TEMPERATURE = 0.7
 
 if not LLM_API_KEY:

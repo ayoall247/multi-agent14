@@ -1,0 +1,37 @@
+<!-- src/frontend/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shippy's Playground MVP</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>Shippy's Playground</h1>
+        </div>
+        <div class="sidebar-content">
+            <h2>Models & Tools</h2>
+            <div class="model-selection">
+                <p>Planner (llama-3.3-70b)</p>
+                <p>Researcher (llama-3.3-70b)</p>
+                <p>Critic (llama-3.3-70b)</p>
+                <p>Writer (llama-3.3-70b)</p>
+                <p>Summarizer (llama-3.3-70b)</p>
+            </div>
+        </div>
+    </aside>
+    <main class="chat-area">
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-header">
+            <input type="text" id="user-prompt" placeholder="Enter your goal or prompt...">
+            <button id="send-btn">Send</button>
+        </div>
+    </main>
+</div>
+<script src="/static/main.js"></script>
+</body>
+</html>

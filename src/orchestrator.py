@@ -1,14 +1,14 @@
+# src/orchestrator.py
 import time
-from .message_board import MessageBoard
-from .agents import PlannerAgent, ResearcherAgent, CriticAgent, WriterAgent
 
 class Orchestrator:
-    def __init__(self, message_board: MessageBoard, planner: PlannerAgent, researcher: ResearcherAgent, critic: CriticAgent, writer: WriterAgent, max_cycles: int = 20):
+    def __init__(self, message_board, planner, researcher, critic, writer, summarizer, max_cycles=3):
         self.message_board = message_board
         self.planner = planner
         self.researcher = researcher
         self.critic = critic
         self.writer = writer
+        self.summarizer = summarizer
         self.max_cycles = max_cycles
 
     def run(self):
@@ -17,13 +17,15 @@ class Orchestrator:
             self.researcher.act()
             self.critic.act()
             self.writer.act()
+            self.summarizer.act()
 
             print(f"\n--- Cycle {cycle+1} ---")
-            for msg in self.message_board.messages:
+            all_msgs = self.message_board.get_all_messages()
+            for msg in all_msgs:
                 print(f"{msg['timestamp']:.2f} [{msg['sender']}]: {msg['content']} (tags: {msg.get('tags', [])})")
 
-            results = [m for m in self.message_board.messages if "final_result" in m.get("tags", [])]
-            if results:
+            final_results = [m for m in all_msgs if "final_result" in m.get("tags", [])]
+            if final_results:
                 print("\nFinal result found! Stopping orchestrator.")
                 break
 
